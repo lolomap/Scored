@@ -1,0 +1,1 @@
+export const aadClientId = 'GB18Q~fWpZCas2kd4.5~hmcwz5O61e2KdsUFhbdu';

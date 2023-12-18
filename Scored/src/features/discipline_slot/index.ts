@@ -1,0 +1,1 @@
+export { default as DisciplineSlot } from './ui.vue';

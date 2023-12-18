@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    font-family: "Rubik", sans-serif;
+    font-weight: 400;
+}
+
+html, body {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.main__content {
+    background-color: var(--main-background);
+    height: 100vh;
+    padding: 50px 50px 150px 50px;
+}

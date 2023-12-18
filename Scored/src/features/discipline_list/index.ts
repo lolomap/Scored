@@ -1,0 +1,1 @@
+export { default as DisciplineList } from './ui.vue';

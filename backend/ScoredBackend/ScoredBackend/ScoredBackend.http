@@ -1,0 +1,6 @@
+@ScoredBackend_HostAddress = http://localhost:5037
+
+GET {{ScoredBackend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
