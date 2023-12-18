@@ -27,4 +27,4 @@ coverage
 *.sln
 *.sw?
 
-/secrets.ts
+*/secrets.ts
