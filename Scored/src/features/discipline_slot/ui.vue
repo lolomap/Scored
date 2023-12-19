@@ -10,7 +10,8 @@ import router from '@/app/router';
 const entityStore = useEntityStore();
 
 interface Props {
-    discipline: DisciplineModel
+    discipline: DisciplineModel;
+    noStudent?: boolean;
 }
 
 const props = defineProps<Props>();
@@ -20,8 +21,15 @@ const {
         name: "",
         score: 0,
         mark: 0
-    }
+    },
+    noStudent = true
 } = props;
+
+const onClick = () => {
+    entityStore.setDisciplineId(discipline.id);
+    router.push('/works')
+};
+
 
 let score_type = 0;
 const color_types: Array<'default' | 'alert' | 'normal' | 'good' | 'great'> = ['default', 'alert', 'normal', 'good', 'great'];
@@ -34,22 +42,18 @@ else if (discipline.score < 71)
 else if (discipline.score < 85)
     score_type = 3;
 else score_type = 4;
-
 </script>
 
 <template>
     <div class="discipline_slot">
         <div class="discipline_slot_navigation"
-            @click="() => {
-                entityStore.setDisciplineId(discipline.id);
-                router.push('/works')
-            }"
+            @click="onClick"
         >
             <Container class="discipline_slot_container">
                 <div class="discipline_name">
                     <Typography tag="p">{{ discipline.name }}</Typography>
                 </div>
-                <div class="discipline_score">
+                <div class="discipline_score" v-if="!noStudent">
                     <Button
                         class="discipline_score_button"
                         :color="color_types[score_type]"

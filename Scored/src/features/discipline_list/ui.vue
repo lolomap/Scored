@@ -5,17 +5,19 @@ import { type DisciplineModel } from '@/entities/discipline';
 
 interface Props {
     items?: Array<DisciplineModel>;
+    noStudent?: boolean;
 }
 
 const props = defineProps<Props>();
 const {
-    items = []
+    items = [],
+    noStudent = false
 } = props;
 </script>
 
 <template>
     <Container class="list_container" v-for="item in items">
-            <DisciplineSlot :discipline="item" />
+            <DisciplineSlot :discipline="item" :noStudent="noStudent" />
     </Container>
 </template>
 

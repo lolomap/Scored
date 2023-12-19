@@ -127,6 +127,43 @@ namespace ScoredBackend.Controllers
             }
             return error;
         }
+
+        [HttpPost]
+        [Route("/change_work")]
+        public DBTable RequestChangeWork(RequestChangeWorkArgs args)
+        {
+            DBTable error = DBConnection.Self!.Query(
+                "CALL ChangeWork(@0, @1, @2)",
+                [args.WorkId, args.Name, args.MaxScore]
+            );
+
+            return error;
+        }
+
+        [HttpPost]
+        [Route("/add_work")]
+        public DBTable RequestAddWork(RequestAddWorkArgs args)
+        {
+            DBTable error = DBConnection.Self!.Query(
+                "CALL AddWork(@0, @1, @2)",
+                [args.DisciplineId, args.Name, args.MaxScore]
+            );
+
+            return error;
+        }
+
+        [HttpPost]
+        [Route("/disciplines")]
+        public DBTable RequestTeacherDisciplines(RequestTeacherDisciplineArgs args)
+        {
+            DBTable query = DBConnection.Self!.Query(
+                "SELECT discipline.Id as 'Id', discipline.Name as 'Name' FROM teacher_discipline JOIN discipline ON discipline.Id = teacher_discipline.DisciplineId WHERE teacher_discipline.TeacherId = @0",
+                [args.TeacherId]
+            );
+
+            return query;
+        }
+
     }
 
     public struct AuthArgs
@@ -180,5 +217,10 @@ namespace ScoredBackend.Controllers
         public int DisciplineId { get; set; }
         public string Name { get; set; }
         public int MaxScore { get; set; }
+    }
+
+    public struct RequestTeacherDisciplineArgs
+    {
+        public int TeacherId { get; set; }
     }
 }

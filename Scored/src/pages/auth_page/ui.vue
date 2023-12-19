@@ -39,7 +39,7 @@ const onSubmit = () => {
             user.name = data['surname'] + ' ' + data['name'][0] + '.' + data['patronymic'][0] + '.';
 
             entityStore.user = user;
-            entityStore.setStudentId(1);
+            if (user.type == 'student') entityStore.setStudentId(user.id);
             router.push('/grades');
         });
 };

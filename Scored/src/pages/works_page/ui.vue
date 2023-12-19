@@ -2,6 +2,8 @@
 import { Header } from '@/widgets/header';
 import { Content } from '@/widgets/content/';
 import { WorksList } from '@/features/works_list';
+import { WorkSlot } from '@/features/work_slot';
+import { Typography } from '@/shared/typography';
 
 import { type WorkModel} from '@/entities/work';
 import { useEntityStore } from '@/entities';
@@ -49,11 +51,20 @@ if (disciplineId.value > 0)
         <div class="main__content">
             <Content>
                 <WorksList :items="works" />
+                <div class="new_work_title" v-if="studentId <= 0">
+                    <Typography tag="p" size="l">Новая работа:</Typography>
+                    <WorkSlot :newWork="true" />
+                </div>
             </Content>
         </div>
     </main>
 </template>
 
 <style scoped>
-
+.new_work_title {
+    color: var(--main-on-default);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
 </style>
