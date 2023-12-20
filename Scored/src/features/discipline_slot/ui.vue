@@ -77,6 +77,7 @@ else score_type = 4;
 .discipline_slot {
     width: 100%;
     padding: 10px 10px;
+    cursor: pointer;
 }
 
 .discipline_slot_container {

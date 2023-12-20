@@ -164,6 +164,20 @@ namespace ScoredBackend.Controllers
             return query;
         }
 
+        [HttpPost]
+        [Route("/search_students")]
+        public DBTable RequestStudentsSearch(RequestStudentsSearchArgs args)
+        {
+            string str = args.SearchQuery.Replace(' ', '%');
+
+            DBTable query = DBConnection.Self!.Query(
+                "SELECT * FROM students_plain WHERE Parse LIKE @0",
+                ['%'+str+'%']
+            );
+
+            return query;
+        }
+
     }
 
     public struct AuthArgs
@@ -223,4 +237,10 @@ namespace ScoredBackend.Controllers
     {
         public int TeacherId { get; set; }
     }
+
+    public struct RequestStudentsSearchArgs
+    {
+        public string SearchQuery { get; set; }
+    }
+
 }

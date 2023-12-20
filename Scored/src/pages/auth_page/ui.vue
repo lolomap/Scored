@@ -40,6 +40,7 @@ const onSubmit = () => {
 
             entityStore.user = user;
             if (user.type == 'student') entityStore.setStudentId(user.id);
+            else entityStore.setStudentId(0);
             router.push('/grades');
         });
 };
@@ -49,19 +50,21 @@ const onSubmit = () => {
 <template>
     <Header />
     <div class="main__content">
-        <Content class="main__content_box">
-            <Typography tag="h4">E-mail SFEDU.RU:</Typography>
-            <Field 
-                class="auth_field" 
-                placeholder="example@sfedu.ru" 
-                :onChange="onChangeAuth"
-                :onEnter="onSubmit"
-            />
-            <Button 
-                class="auth_button" 
-                color="alert"
-                @click="onSubmit"
-            >Авторизоваться</Button>
+        <Content>
+            <div class="main__content_box">
+                <Typography tag="h4">E-mail SFEDU.RU:</Typography>
+                <Field 
+                    class="auth_field" 
+                    placeholder="example@sfedu.ru" 
+                    :onChange="onChangeAuth"
+                    :onEnter="onSubmit"
+                />
+                <Button 
+                    class="auth_button" 
+                    color="alert"
+                    @click="onSubmit"
+                >Авторизоваться</Button>
+            </div>
         </Content>
     </div>
 </template>
@@ -69,6 +72,7 @@ const onSubmit = () => {
 <style scoped>
 
 .main__content_box {
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
